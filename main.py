@@ -3,17 +3,18 @@ import random
 import datetime as dt
 import os
 
-with open ("quotes.txt") as file:
+MY_EMAIL = os.environ.get("MY_EMAIL")
+MY_PASSWORD = os.environ.get("MY_PASSWORD")
+
+with open("quotes.txt") as file:
     all_quotes = file.readlines()
-    random_quote = random.choice(all_quotes)
+    random_quote = random.choice(all_quotes).strip()
 
-def send_email():
-    with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
-        connection.starttls()       #Makes connection secure
-        connection.login(user=${{secrets.MY_EMAIL}}, password=${{secrets.MY_PASSWORD}})
-        connection.sendmail(from_addr=${{secrets.MY_EMAIL}},
-                            to_addrs="tfm606.606@gmail.com",
-                            msg=f"Subject: Friendly Reminder\n\n{random_quote}")
-        connection.close()
-
-send_email()
+with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
+    connection.starttls()
+    connection.login(user=MY_EMAIL, password=MY_PASSWORD)
+    connection.sendmail(
+        from_addr=MY_EMAIL,
+        to_addrs="tfm606.606@gmail.com",
+        msg=f"Subject: Friendly Reminder\n\n{random_quote}"
+    )
