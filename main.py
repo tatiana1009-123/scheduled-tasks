@@ -6,7 +6,7 @@ import os
 MY_EMAIL = os.environ.get("MY_EMAIL")
 MY_PASSWORD = os.environ.get("MY_PASSWORD")
 
-recipients = ["tfm606.606@gmail.com", "pjmozingo604@gmail.com", "julio_ferro2009@hotmail.com", "maritza_montaa@yahoo.es"]
+recipients = ["tfm606.606@gmail.com", "pjmozingo604@gmail.com", "julio.ferro2009@hotmail.com", "maritza_montaa@yahoo.es"]
 
 with open("quotes.txt") as file:
     all_quotes = file.readlines()
